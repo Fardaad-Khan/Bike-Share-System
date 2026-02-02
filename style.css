@@ -1,0 +1,235 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #f9fafb;
+    color: #000;
+}
+
+/* ---------- AUTH ---------- */
+.modalCenter {
+    max-width: 400px;
+    margin: 150px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+input, select {
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.btnPrimary {
+    background-color: #DC2B28;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+.btnPrimary:hover {
+    background-color: #b91c1c;
+}
+.btnRed {
+    background: #000;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+.btnRed:hover {
+    background: #333;
+}
+.btnOutline {
+    background: transparent;
+    border: 1px solid #DC2B28;
+    color: #DC2B28;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+.btnOutline:hover {
+    background: #fee2e2;
+}
+#switchMode {
+    color: #DC2B28;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ---------- HEADER ---------- */
+.topbar {
+    background: #DC2B28;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.headerRight {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.creditDisplay {
+    background: #fff;
+    color: #DC2B28;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+    background: url('https://images.unsplash.com/photo-1532298229144-0ec0c57515c5') no-repeat center center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+.hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 12px;
+}
+.hero-content h2 {
+    margin: 0;
+    font-size: 36px;
+}
+.hero-content p {
+    margin: 10px 0 0;
+    font-size: 18px;
+}
+
+/* ---------- SEARCH ---------- */
+.searchBar {
+    padding: 20px 30px;
+    display: flex;
+    gap: 12px;
+}
+.searchBar input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 16px;
+    background: white;
+}
+.searchBar select {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 16px;
+    background: white;
+}
+
+/* ---------- GRID ---------- */
+.bikeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 30px;
+}
+.bikeCard {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.bikeCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.bikeCard img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+.statusAvailable { color: #22c55e; font-weight: 600; }
+.statusReserved { color: #f59e0b; font-weight: 600; }
+.rowTwo {
+    display: flex;
+    gap: 12px;
+}
+
+/* ---------- MODAL ---------- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+.modalBox {
+    background: white;
+    width: 360px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.sectionTitle {
+    padding: 0 30px;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* ---------- HISTORY TABLE ---------- */
+#historyTable {
+    width: calc(100% - 60px);
+    margin: 0 auto 40px;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+#historyTable th, #historyTable td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #d1d5db;
+}
+#historyTable th {
+    background: #f3f4f6;
+    font-weight: 600;
+}
+#historyTable tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+footer a {
+    color: #DC2B28;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    text-decoration: underline;
+}

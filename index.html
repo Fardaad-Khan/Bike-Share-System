@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swinburne Campus Bike Share</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="authCard" class="modalCenter">
+    <h2>🚴‍♂️ Bike Share Login</h2>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button id="authBtn" class="btnPrimary">Login</button>
+    <p id="switchText">No account? <span id="switchMode">Signup</span></p>
+</div>
+
+<!-- MAIN DASHBOARD -->
+<div id="dashboard" style="display:none;">
+    <header class="topbar">
+        <div>
+            <h1>🛴 Swinburne Bike Share</h1>
+            <p id="activeReservation"></p>
+        </div>
+        <div class="headerRight">
+            <span class="creditDisplay">Credits: $<span id="credits"></span></span>
+            <button id="addCreditsBtn" class="btnPrimary">Add Credits</button>
+            <button id="logoutBtn" class="btnRed">Logout</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Swinburne Bike Share</h2>
+            <p>Rent bikes easily and explore the campus sustainably!</p>
+        </div>
+    </section>
+
+    <section class="searchBar">
+        <input id="filterInput" placeholder="Search bikes by name or type…">
+        <select id="typeFilter">
+            <option>All</option>
+            <option>Mountain</option>
+            <option>Hybrid</option>
+            <option>Road</option>
+            <option>Electric</option>
+        </select>
+    </section>
+
+    <h2 class="sectionTitle">Available Bikes</h2>
+    <div id="bikeGrid" class="bikeGrid"></div>
+
+    <h2 class="sectionTitle">Reservation History</h2>
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Bike</th>
+                <th>Days</th>
+            </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+    </table>
+
+    <footer>
+        <p>&copy; 2026 Swinburne University of Technology. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
+    </footer>
+</div>
+
+<!-- RESERVATION MODAL -->
+<div id="reserveModal" class="modal">
+    <div class="modalBox">
+        <h3>Reserve Bike</h3>
+        <p><strong id="resBikeName"></strong></p>
+
+        <label>Days</label>
+        <input id="reserveDays" type="number" min="1" value="1">
+
+        <label>Pickup Point</label>
+        <select id="pickupPoint"></select>
+
+        <label>Dropoff Point</label>
+        <select id="dropoffPoint"></select>
+
+        <button id="confirmReserve" class="btnPrimary">Confirm</button>
+        <button onclick="closeModal('reserveModal')" class="btnOutline">Cancel</button>
+    </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal">
+    <div class="modalBox">
+        <h3>Add Credits</h3>
+        <label>Credits to buy ($7 each)</label>
+        <input id="creditAmount" type="number" min="1" value="1">
+
+        <hr>
+
+        <label>Card Number</label>
+        <input id="cardNumber" placeholder="4111 1111 1111 1111">
+
+        <div class="rowTwo">
+            <div><label>Expiry</label><input id="expiry" placeholder="MM/YY"></div>
+            <div><label>CVV</label><input id="cvv" placeholder="123"></div>
+        </div>
+
+        <button id="makePayment" class="btnPrimary">Pay Now</button>
+        <button onclick="closeModal('paymentModal')" class="btnOutline">Cancel</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
