@@ -1,13 +1,13 @@
 // Bikes dataset with real images
 const bikes = [
-  { id:1, name:"Trek Marlin 7", type:"Mountain", img:"https://www.firststopboardbarn.com/cdn/shop/files/Marlin7-24-41217-A-Primary.png?v=1746565975&width=1920", available:true },
+  { id:1, name:"Trek Marlin 7", type:"Road", img:"https://www.firststopboardbarn.com/cdn/shop/files/Marlin7-24-41217-A-Primary.png?v=1746565975&width=1920", available:true },
   { id:2, name:"Giant Talon 1", type:"Mountain", img:"https://mackcycle.com/cdn/shop/files/giant-talon-1-front-suspension-mountain-bike-black-1.jpg?v=1756494702&width=1214", available:true },
-  { id:3, name:"Specialized Rockhopper", type:"Mountain", img:"https://bikepacking.com/wp-content/uploads/2020/05/2021-specialized-rockhopper-2-2000x1333.jpg", available:true },
+  { id:3, name:"Specialized Rockhopper", type:"Hybrid", img:"https://bikepacking.com/wp-content/uploads/2020/05/2021-specialized-rockhopper-2-2000x1333.jpg", available:true },
   { id:4, name:"Cannondale Trail 7", type:"Mountain", img:"https://www.sefiles.net/images/library/zoom/cannondale-trail-6-copy-211880-1.jpg", available:true },
-  { id:5, name:"Scott Aspect 950", type:"Mountain", img:"https://shop.playtrifortwaltonbeach.com/cdn/shop/products/image_8fafa277-97e7-4aed-934f-5e25a2dc017f_934x700.jpg?v=1706059729", available:true },
+  { id:5, name:"Scott Aspect 950", type:"Electric", img:"https://shop.playtrifortwaltonbeach.com/cdn/shop/products/image_8fafa277-97e7-4aed-934f-5e25a2dc017f_934x700.jpg?v=1706059729", available:true },
   { id:6, name:"GT Aggressor Expert", type:"Hybrid", img:"https://media.bikehub.co.za/production/Media/MarketplaceItem/2023/666114/-1693380967-9323.jpg", available:true },
   { id:7, name:"Merida Big Nine 300", type:"Mountain", img:"http://grundtner.com/cdn/shop/products/gn23IgxWTEWJBhAGp8P2JA_thumb_9cd3.jpg?v=1642771618", available:true },
-  { id:8, name:"Cube Aim Pro", type:"Mountain", img:"https://i0.wp.com/bike-test.com/wp-content/uploads/2022/12/23_248-1-scaled.jpg?fit=2560%2C1491&ssl=1", available:true },
+  { id:8, name:"Cube Aim Pro", type:"Electric", img:"https://i0.wp.com/bike-test.com/wp-content/uploads/2022/12/23_248-1-scaled.jpg?fit=2560%2C1491&ssl=1", available:true },
   { id:9, name:"Specialized Sirrus X", type:"Hybrid", img:"http://bicyclewarehouse.com/cdn/shop/files/92425-95_SIRRUS-X-10-ST-KM-DPMRNBLU-GRYBLU_HERO-PDP.png?v=1726532499", available:true },
   { id:10, name:"Cannondale Quick 4", type:"Road", img:"https://c02.purpledshub.com/uploads/sites/39/2020/09/Cannondale-Quick-4-Disc-with-Cytronex-04-288108f.jpg?quality=45&resize=768,574", available:true },
   { id:11, name:"Aventon Pace 500", type:"Electric", img:"https://cdn.shoplightspeed.com/shops/632567/files/53843419/aventon-aventon-pace-500-step-over-30.jpg", available:true },
@@ -151,6 +151,12 @@ function showReserveModal(bike) {
   }
   resBikeName.textContent = bike.name;
   reserveModal.style.display = "flex";
+  updateCost();
+  reserveDays.oninput = updateCost;
+  function updateCost() {
+    const d = parseInt(reserveDays.value) || 1;
+    document.getElementById('costDisplay').textContent = `Cost: ${Math.ceil(d / 2)} credits`;
+  }
   confirmReserve.onclick = () => {
     const d = parseInt(reserveDays.value);
     const cost = Math.ceil(d / 2);
@@ -170,7 +176,9 @@ function showReserveModal(bike) {
 // Unreserve
 function unreserveBike(bike) {
   if (currentUser.reservation && currentUser.reservation.bikeId === bike.id) {
-    if (currentUser.reservation.days > 1) currentUser.credits += 0.5;
+    if (!confirm("Are you sure you want to unreserve? You will get a full refund.")) return;
+    const refund = Math.ceil(currentUser.reservation.days / 2);
+    currentUser.credits += refund;
     bike.available = true;
     currentUser.reservation = null;
     localStorage.setItem("users", JSON.stringify(users));
@@ -204,5 +212,6 @@ makePayment.onclick = () => {
     localStorage.setItem("users", JSON.stringify(users));
     updateDashboard();
     closeModal("paymentModal");
+    alert("Payment successful!");
   } else alert("Payment failed");
 }
